@@ -19,13 +19,15 @@ const insertData = (data) => {
     const query = "INSERT INTO clients (client_id, name, contact, age, city) VALUES (?,?,?,?,?)"
     [data.CLIENT_ID, data.NAME, data.CONTACT, data.AGE, data.CITY]
     return new Promise((resolve, reject) => {
-        db.insert(query, (error, rows) => {
+        db.run(query, (error, rows) => {
             if (error) {
                 reject(error)
             } 
             else {
                 resolve({
-                    id: data.ID,
+                    "msg": `Data successfully inserted!`,
+                    "pedido": rows,
+                    "erro": false,
                 });
             }
         });
@@ -58,7 +60,7 @@ const updateById = (id, data) => {
     const query = "UPDATE clients SET name = ?, contact = ?, age =?, city = ? WHERE id = ?"
     [data.name, data.contact, data.age, data.city, id]
     return new Promise((resolve, reject) => {
-        db.update(query, (error, rows) => {
+        db.run(query, (error, rows) => {
             if (error) {
                 reject(error)
             } 
@@ -73,7 +75,7 @@ const deleteByCity = (city) => {
     const query = "DELETE FROM clients WHERE city = ?"
     city
     return new Promise((resolve, reject) => {
-        db.delete(query, (error) => {
+        db.run(query, (error) => {
             if (error) {
                 reject(error)
             } 

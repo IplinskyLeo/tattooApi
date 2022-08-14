@@ -19,3 +19,6 @@ cors(corsConfig)
 routes(app);
 
 export default app;
+
+const port = process.env.PORT || 4000;
+
