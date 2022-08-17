@@ -9,9 +9,9 @@ import {
 
 const router = Router();
 
-router.get("/Material", createMaterial);
-router.get("/Material/:id", findAllMaterials);
-router.post("/Material", findMaterial);
+router.post("/Material", createMaterial);
+router.get("/Materials", findAllMaterials);
+router.get("/Material/:id", findMaterial);
 router.put("/Material/:id", updateMaterialC);
 router.delete("/Material/:id", deleteMaterialC);
 

@@ -1,3 +1,5 @@
+import Fornecedores from '../models/Materiais.js';
+
 import {
   getMaterial,
   selectMaterials,

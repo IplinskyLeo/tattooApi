@@ -6,12 +6,12 @@ import {
   deleteMaterialD,
 } from "../dao/MateriaisDAO.js";
 
-class Fornecedores {
+export default class Fornecedores {
   constructor(fornecedor, produto, quantidade, valor) {
+    this.fornecedor = fornecedor;
     this.produto = produto;
     this.quantidade = quantidade;
     this.valor = valor;
-    this.fornecedor = fornecedor;
   }
 }
 
@@ -27,9 +27,9 @@ export const insertMaterial = async (data) => {
   }
 };
 
-export const selectMaterials = async (id) => {
+export const selectMaterials = async () => {
   try {
-    const data = await findAllMaterialsD(id);
+    const data = await findAllMaterialsD();
     if (!data) throw new Error("Não foi possível encontrar os Materiais!");
     return data;
   } catch (err) {

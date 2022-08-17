@@ -5,9 +5,9 @@ const createMaterialD = (data) => {
     db.run(
       `INSERT INTO MATERIAL (fornecedor, produto, quantidade, valor) VALUES (?,?,?,?)`,
       [data.fornecedor, data.produto, data.quantidade, data.valor],
-      (err) => {
-        if (err) {
-          reject(err);
+      (error) => {
+        if (error) {
+          reject(error);
         } else {
           resolve();
         }
@@ -16,12 +16,23 @@ const createMaterialD = (data) => {
   });
 };
 // Material // MATERIAL
+// const findAllMaterialsD = () => {
+//   const query = `SELECT * FROM MATERIAL`;
+//   return new Promise((resolve, reject) => {
+//     db.all(query, (error, rows) => {
+//       if (error) {
+//         reject(error);
+//       } else {
+//         resolve(rows);
+//       }
+//     });
+//   });
+// };
 const findAllMaterialsD = () => {
-  const query = `SELECT * FROM MATERIAL`;
   return new Promise((resolve, reject) => {
-    db.all(query, (error, rows) => {
-      if (error) {
-        reject(error);
+    db.all("SELECT * FROM MATERIAL", (erro, rows) => {
+      if (erro) {
+        reject(erro.message);
       } else {
         resolve(rows);
       }
