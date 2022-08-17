@@ -93,9 +93,9 @@ const deleteAgendamento = async (req, res) => {
   try {
     const Agendamentos = await deleteAgendamentoD(req.params.id);
     res.status(200).json({ Agendamentos });
-  } catch (error) {
+  } catch (erro) {
     res.status(400).json({
-      message: error.message,
+      message: erro.message,
       erro: "true",
     });
   }
