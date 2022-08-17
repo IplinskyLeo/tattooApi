@@ -1,9 +1,9 @@
 import {
-  createMaterial,
-  findMaterial,
-  findAllMaterials,
-  updateMaterial,
-  deleteMaterial,
+  createMaterialD,
+  findAllMaterialsD,
+  findMaterialD,
+  updateMaterialD,
+  deleteMaterialD,
 } from "../dao/MateriaisDAO.js";
 
 class Fornecedores {
@@ -19,7 +19,7 @@ class Fornecedores {
 
 export const insertMaterial = async (data) => {
   try {
-    const dat = await createMaterial(data);
+    const dat = await createMaterialD(data);
     if (!dat) throw new Error("Não foi possível inserir os dados!");
     return dat;
   } catch (err) {
@@ -29,7 +29,7 @@ export const insertMaterial = async (data) => {
 
 export const selectMaterials = async (id) => {
   try {
-    const data = await findAllMaterials(id);
+    const data = await findAllMaterialsD(id);
     if (!data) throw new Error("Não foi possível encontrar os Materiais!");
     return data;
   } catch (err) {
@@ -39,7 +39,7 @@ export const selectMaterials = async (id) => {
 
 export const getMaterial = async () => {
   try {
-    const data = await findMaterial();
+    const data = await findMaterialD();
     if (!data) throw new Error("Não foi possível encontrar o Material!");
     return data;
   } catch (err) {
@@ -49,7 +49,7 @@ export const getMaterial = async () => {
 
 export const updateMaterials = async (id) => {
   try {
-    const data = await updateMaterial(id);
+    const data = await updateMaterialD(id);
     if (!data) throw new Error("Não foi possível atualizar os Materiais!");
     return data;
   } catch (err) {
@@ -59,7 +59,7 @@ export const updateMaterials = async (id) => {
 
 export const deleteMaterials = async (id) => {
   try {
-    const data = await deleteMaterial(id);
+    const data = await deleteMaterialD(id);
     if (!data) throw new Error("Não foi possível deletar os dados!");
     return data;
   } catch (err) {
