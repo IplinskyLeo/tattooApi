@@ -1,6 +1,6 @@
 import express from "express";
 import cors from "cors";
-import routes from "./routes/main_route.js";
+import clients from "./routes/cliente.js";
 
 
 const corsConfig = {
@@ -16,9 +16,17 @@ app.use(express.json(),
 cors(corsConfig)
 )
 
-routes(app);
+const routes = (app) => {
+    app.route('/').get((req, res) => {
+        res.status(200).send({ titulo: "Tattoo API" })
+    })
 
-export default app;
+    app.use(
+        clients
+    );
+}
+
+routes(app);
 
 const port =  process.env.PORT || 5000;
 

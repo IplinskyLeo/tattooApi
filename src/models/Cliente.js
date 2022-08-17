@@ -1,4 +1,4 @@
-import {clientsList, clientSelectById, insertData, updateById, deleteById} from "../dao/client_d.js"
+import {clientsList, clientSelectById, insertData, updateById, deleteById} from "../dao/ClienteDAO.js"
 
 export class Clients {
     constructor(client_id, name, contact, age, city){
@@ -58,4 +58,4 @@ export const deleteD = async (id) => {
   } catch (error) {
     throw error;
   }
-};
+}

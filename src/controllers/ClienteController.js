@@ -1,4 +1,4 @@
-import  {Clients, getClients, selectData, insertD, updateD, deleteD} from "../models/client_m.js";
+import  {Clients, getClients, selectData, insertD, updateD, deleteD} from "../models/Cliente.js";
 
 export const clientsList = async (req, res) => {
     try {
@@ -12,26 +12,18 @@ export const clientsList = async (req, res) => {
     }
  }
 
- export const clientSelectById = async (req, res) => {
- const { name, contact, age, city } = req.body;
-    const { id } = req.params;
-
-    const oldClient = await selectData(id);
-    const dataMolded = new Clients(
-      name || oldClient[0].NAME,
-      contact || oldClient[0].CONTACT,
-      age || oldClient[0].AGE,
-      city || oldClient[0].CITY,
-      id
-    );
-
-    try {
-      const data = await putUserByID(dataMolded);
-      res.status(201).json({ results: data, error: false });
-    } catch (erro) {
-      res.status(400).json({ message: erro.message, error: true });
-    }};
-
+export const clientSelectById = async (req, res) => {
+  const id = req.params.id;
+  try {
+    const clients = await selectData(id);
+    res.status(200).json({ clients });
+  } catch (error) {
+    res.status(400).json({
+      message: error.message,
+      erro: "true",
+    });
+  }
+};
 
  export const updateData = async (req, res) => {
      const id = req.params.id

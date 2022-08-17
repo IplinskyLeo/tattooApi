@@ -1,4 +1,4 @@
-import db from "../data/db.js";
+import db from "../database/db.js";
 
 const clientsList = () => {
     return new Promise((resolve, reject) => {
