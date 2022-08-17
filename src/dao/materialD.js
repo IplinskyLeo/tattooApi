@@ -3,7 +3,7 @@ import db from "../database/config.js";
 const createFornecedorD = (data) => {
   return new promise((resolve, reject) => {
     db.run(
-      `INSERT INTO FORNECEDOR (fornecedor, produto, quantidade, valor) VALUES (?,?,?,?)`,
+      `INSERT INTO MATERIAL (fornecedor, produto, quantidade, valor) VALUES (?,?,?,?)`,
       [data.fornecedor, data.produto, data.quantidade, data.valor],
       (err) => {
         if (err) {
@@ -15,32 +15,32 @@ const createFornecedorD = (data) => {
     );
   });
 };
-
-const findAllFornecedoresD = () => {
+// Material // MATERIAL
+const findAllMaterialsD = () => {
   return new promise((resolve, reject) => {
-    db.all(`SELECT * FROM FORNECEDOR`, (err, rows) => {
+    db.all(`SELECT * FROM MATERIAL`, (err, rows) => {
       if (err) {
-        rej(err);
+        reject(err);
       } else {
-        res(rows);
+        resolve(rows);
       }
     });
   });
 };
 
-const findFornecedorD = (id) => {
+const findMaterialD = (id) => {
   return new promise((resolve, reject) => {
     db.get(`SELECT * FROM FORNECEDOR WHERE id = ?`, [id], (err, row) => {
       if (err) {
-        rej(err);
+        reject(err);
       } else {
-        res(row);
+        resolve(row);
       }
     });
   });
 };
 
-const updateFornecedorD = (data) => {
+const updateMaterialD = (data) => {
   return new promise((resolve, reject) => {
     db.run(
       `UPDATE FORNECEDOR SET
@@ -61,7 +61,7 @@ const updateFornecedorD = (data) => {
   });
 };
 
-const deleteFornecedorD = (id) => {
+const deleteMaterialD = (id) => {
   return new promise((resolve, reject) => {
     db.run(`DELETE FROM FORNECEDOR WHERE id = ?`, [id], (err) => {
       if (err) {
@@ -73,7 +73,7 @@ const deleteFornecedorD = (id) => {
   });
 };
 
-export default {
+export{
   createFornecedorD,
   findAllFornecedoresD,
   findFornecedorD,

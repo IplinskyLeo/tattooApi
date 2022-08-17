@@ -1,5 +1,5 @@
 import sqlite3 from "sqlite3";
-const db = new sqlite3.Database("./database/database.db");
+const db = new sqlite3.Database("./src/database/database.db");
 
 const createTable = () => {
   `CREATE TABLE IF NOT EXISTS FORNECEDOR (

@@ -4,11 +4,20 @@ import {
   findAllFornecedores,
   updateFornecedor,
   deleteFornecedor,
-} from "../dao/fornecedores.js";
+} from "../dao/materialD.js";
 
-export default class Fornecedores {
-  constructor(db) {
-    this.db = db;
+// export default class Fornecedores {
+//   constructor(db) {
+//     this.db = db;
+//   }
+// }
+
+class Fornecedores {
+  constructor(fornecedor, produto, quantidade, valor) {
+    this.produto = produto;
+    this.quantidade = quantidade;
+    this.valor = valor;
+    this.fornecedor = fornecedor;
   }
 }
 
@@ -35,9 +44,9 @@ export const selectFornecedores = async (id) => {
   }
 };
 
-export const getFornecedores = () => {
+export const getFornecedores = async () => {
   try {
-    const fornecedores = findFornecedor();
+    const fornecedores = await findFornecedor();
     if (!fornecedores)
       throw new Error("Não foi possível encontrar os fornecedores!");
     return fornecedores;
