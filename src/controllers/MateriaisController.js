@@ -1,12 +1,10 @@
-// import { fornecedores } from ".../models/fornecedores.js";
-
 import {
   getMaterialD,
   selectMaterialD,
   insertMaterialD,
   updateMaterialD,
   deleteMaterialD,
-} from "../models/materialM";
+} from "../models/Materiais.js";
 
 export const createMaterial = async (req, res) => {
   const data = req.params.data;
@@ -71,11 +69,3 @@ export const deleteMaterial = async (req, res) => {
     });
   }
 };
-
-// export default {
-//   createFornecedor,
-//   findAllFornecedores,
-//   findFornecedor,
-//   updateFornecedor,
-//   deleteFornecedor,
-// };

@@ -1,5 +1,5 @@
 import express from "express";
-import router from "./routes/materialR.js";
+import router from "./routes/materiais.js";
 
 const app = express();
 

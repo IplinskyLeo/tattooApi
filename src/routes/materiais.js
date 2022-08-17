@@ -5,7 +5,7 @@ import {
   findFornecedor,
   updateFornecedor,
   deleteFornecedor,
-} from "../controllers/materialC.js";
+} from "../controllers/MateriaisController.js";
 
 const router = Router();
 
