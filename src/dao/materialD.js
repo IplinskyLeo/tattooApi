@@ -1,6 +1,6 @@
 import db from "../database/config.js";
 
-const createFornecedorD = (data) => {
+const createMaterialD = (data) => {
   return new promise((resolve, reject) => {
     db.run(
       `INSERT INTO MATERIAL (fornecedor, produto, quantidade, valor) VALUES (?,?,?,?)`,
@@ -17,10 +17,11 @@ const createFornecedorD = (data) => {
 };
 // Material // MATERIAL
 const findAllMaterialsD = () => {
-  return new promise((resolve, reject) => {
-    db.all(`SELECT * FROM MATERIAL`, (err, rows) => {
-      if (err) {
-        reject(err);
+  const query = "SELECT * FROM MATERIAL;";
+  return new Promise((resolve, reject) => {
+    db.all(query, (error, rows) => {
+      if (error) {
+        reject(error);
       } else {
         resolve(rows);
       }
@@ -30,7 +31,7 @@ const findAllMaterialsD = () => {
 
 const findMaterialD = (id) => {
   return new promise((resolve, reject) => {
-    db.get(`SELECT * FROM FORNECEDOR WHERE id = ?`, [id], (err, row) => {
+    db.get(`SELECT * FROM MATERIAL WHERE id = ?`, id, (err, row) => {
       if (err) {
         reject(err);
       } else {
@@ -40,21 +41,21 @@ const findMaterialD = (id) => {
   });
 };
 
-const updateMaterialD = (data) => {
+const updateMaterialD = (id, data) => {
   return new promise((resolve, reject) => {
     db.run(
-      `UPDATE FORNECEDOR SET
+      `UPDATE MATERIAL SET
             fornecedor = ?,
             produto = ?,
             quantidade = ?,
             valor = ?
-        WHERE id = ?`,
-      [data.fornecedor, data.produto, data.quantidade, data.valor, data.id],
+            WHERE id = ?`,
+      [data.fornecedor, data.produto, data.quantidade, data.valor, id],
       (err) => {
         if (err) {
           reject(err);
         } else {
-          resolve();
+          resolve(rows);
         }
       }
     );
@@ -63,20 +64,20 @@ const updateMaterialD = (data) => {
 
 const deleteMaterialD = (id) => {
   return new promise((resolve, reject) => {
-    db.run(`DELETE FROM FORNECEDOR WHERE id = ?`, [id], (err) => {
+    db.run(`DELETE FROM MATERIAL WHERE id = ?`, id, (err) => {
       if (err) {
         reject(err);
       } else {
-        resolve();
+        resolve("Material deletado com sucesso!");
       }
     });
   });
 };
 
-export{
-  createFornecedorD,
-  findAllFornecedoresD,
-  findFornecedorD,
-  updateFornecedorD,
-  deleteFornecedorD,
+export {
+  createMaterialD,
+  findAllMaterialsD,
+  findMaterialD,
+  updateMaterialD,
+  deleteMaterialD,
 };
