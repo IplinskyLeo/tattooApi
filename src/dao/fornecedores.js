@@ -1,9 +1,9 @@
-import db from "../database/dbconfig.js";
+import db from "../database/config.js";
 
-const createFornecedor = (data) => {
-  return new promise((res, rej) => {
+const createFornecedorD = (data) => {
+  return new promise((resolve, reject) => {
     db.run(
-      `INSERT INTO fornecedores (fornecedor, produto, quantidade, valor) VALUES (?,?,?,?)`,
+      `INSERT INTO FORNECEDOR (fornecedor, produto, quantidade, valor) VALUES (?,?,?,?)`,
       [data.fornecedor, data.produto, data.quantidade, data.valor],
       (err) => {
         if (err) {
@@ -16,9 +16,9 @@ const createFornecedor = (data) => {
   });
 };
 
-const findAllFornecedores = () => {
-  return new promise((res, rej) => {
-    db.all(`SELECT * FROM fornecedores`, (err, rows) => {
+const findAllFornecedoresD = () => {
+  return new promise((resolve, reject) => {
+    db.all(`SELECT * FROM FORNECEDOR`, (err, rows) => {
       if (err) {
         rej(err);
       } else {
@@ -28,9 +28,9 @@ const findAllFornecedores = () => {
   });
 };
 
-const findFornecedor = (id) => {
-  return new promise((res, rej) => {
-    db.get(`SELECT * FROM fornecedores WHERE id = ?`, [id], (err, row) => {
+const findFornecedorD = (id) => {
+  return new promise((resolve, reject) => {
+    db.get(`SELECT * FROM FORNECEDOR WHERE id = ?`, [id], (err, row) => {
       if (err) {
         rej(err);
       } else {
@@ -40,10 +40,10 @@ const findFornecedor = (id) => {
   });
 };
 
-const updateFornecedor = (data) => {
-  return new promise((res, rej) => {
+const updateFornecedorD = (data) => {
+  return new promise((resolve, reject) => {
     db.run(
-      `UPDATE fornecedores SET
+      `UPDATE FORNECEDOR SET
             fornecedor = ?,
             produto = ?,
             quantidade = ?,
@@ -61,9 +61,9 @@ const updateFornecedor = (data) => {
   });
 };
 
-const deleteFornecedor = (id) => {
-  return new promise((res, rej) => {
-    db.run(`DELETE FROM fornecedores WHERE id = ?`, [id], (err) => {
+const deleteFornecedorD = (id) => {
+  return new promise((resolve, reject) => {
+    db.run(`DELETE FROM FORNECEDOR WHERE id = ?`, [id], (err) => {
       if (err) {
         reject(err);
       } else {
@@ -74,9 +74,9 @@ const deleteFornecedor = (id) => {
 };
 
 export default {
-  createFornecedor,
-  findAllFornecedores,
-  findFornecedor,
-  updateFornecedor,
-  deleteFornecedor,
+  createFornecedorD,
+  findAllFornecedoresD,
+  findFornecedorD,
+  updateFornecedorD,
+  deleteFornecedorD,
 };
