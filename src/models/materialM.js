@@ -1,16 +1,11 @@
 import {
-  createFornecedor,
-  findFornecedor,
-  findAllFornecedores,
-  updateFornecedor,
-  deleteFornecedor,
+  createMaterial,
+  findMaterial,
+  findAllMaterials,
+  updateMaterial,
+  deleteMaterial,
 } from "../dao/materialD.js";
 
-// export default class Fornecedores {
-//   constructor(db) {
-//     this.db = db;
-//   }
-// }
 
 class Fornecedores {
   constructor(fornecedor, produto, quantidade, valor) {
@@ -23,9 +18,9 @@ class Fornecedores {
 
 // -> insert, select, get, update, delete <-
 
-export const insertFornecedor = async (data) => {
+export const insertMaterial = async (data) => {
   try {
-    const dat = await createFornecedor(data);
+    const dat = await createMaterial(data);
     if (!dat) throw new Error("Não foi possível inserir os dados!");
     return dat;
   } catch (err) {
@@ -33,41 +28,41 @@ export const insertFornecedor = async (data) => {
   }
 };
 
-export const selectFornecedores = async (id) => {
+export const selectMaterials = async (id) => {
   try {
-    const fornecedores = await findAllFornecedores(id);
-    if (!fornecedores)
-      throw new Error("Não foi possível encontrar os fornecedores!");
-    return fornecedores;
-  } catch (err) {
-    throw err;
-  }
-};
-
-export const getFornecedores = async () => {
-  try {
-    const fornecedores = await findFornecedor();
-    if (!fornecedores)
-      throw new Error("Não foi possível encontrar os fornecedores!");
-    return fornecedores;
-  } catch (err) {
-    throw err;
-  }
-};
-
-export const updateFornecedor = async (id) => {
-  try {
-    const data = await updateFornecedor(id);
-    if (!data) throw new Error("Não foi possível atualizar os dados!");
+    const data = await findAllMaterials(id);
+    if (!data)
+      throw new Error("Não foi possível encontrar os Materiais!");
     return data;
   } catch (err) {
     throw err;
   }
 };
 
-export const deleteFornecedor = async (id) => {
+export const getMaterial = async () => {
   try {
-    const data = await deleteFornecedor(id);
+    const data = await findMaterial();
+    if (!data)
+      throw new Error("Não foi possível encontrar o Material!");
+    return data;
+  } catch (err) {
+    throw err;
+  }
+};
+
+export const updateMaterial = async (id) => {
+  try {
+    const data = await updateMaterial (id);
+    if (!data) throw new Error("Não foi possível atualizar os Materiais!");
+    return data;
+  } catch (err) {
+    throw err;
+  }
+};
+
+export const deleteMaterial = async (id) => {
+  try {
+    const data = await deleteMaterial(id);
     if (!data) throw new Error("Não foi possível deletar os dados!");
     return data;
   } catch (err) {
