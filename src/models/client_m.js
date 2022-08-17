@@ -1,8 +1,8 @@
-import {clientsList, clientSelectById, insertData, updateById, deleteByCity} from "../dao/client_d.js"
+import {clientsList, clientSelectById, insertData, updateById, deleteById} from "../dao/client_d.js"
 
-class Clients {
+export class Clients {
     constructor(client_id, name, contact, age, city){
-        this.client_id = client_id;
+        this.id = client_id;
         this.name = name;
         this.contact = contact;
         this.age = age;
@@ -24,7 +24,7 @@ export const selectData = async (id) => {
     try {
         const data = await clientSelectById(id);
         if (!data) throw new Error("Não foi possível encontrar os clientes!")
-        return d
+        return data
     } catch (error) {
         throw error
     }
@@ -50,12 +50,12 @@ export const updateD = async (id) => {
     }
 }
 
-export const deleteD = async (city) => {
+export const deleteD = async (id) => {
     try {
-        const data = await deleteByCity(city);
-        if (!data) throw new Error("Não foi possível deletar os seus dados!")
-        return data
-    } catch (error) {
-        throw error
-    }
-}
+        const clients = await deleteById(id);
+        if (!clients) throw new Error("Can not delete client");
+        return clients;
+  } catch (error) {
+    throw error;
+  }
+};

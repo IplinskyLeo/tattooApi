@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS "CLIENTS" (
 );`;
 
 const ADD_CLIENTS_DATA = `
-INSERT INTO CLIENTS (CLIENT_ID, NAME, CONTACT, AGE, CITY)
+INSERT INTO CLIENTS (client_id, name, contact, age, city)
 VALUES 
     (1, 'Luiza da Silva Pereira', '(21) 98708-7261', '18', 'Rio de Janeiro'),
     (2, 'Lucas Nascimento de Sousa', '(88) 97431-0987', '25', 'Fortaleza'),

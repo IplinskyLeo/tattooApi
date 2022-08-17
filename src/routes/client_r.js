@@ -6,8 +6,8 @@ router
     .get("/clients", clientsList)
     .get("/clients/:id", clientSelectById)
     .patch("/clients/:id", updateData)
-    .delete("/clients/:city", deleteData)
-    .post("/clients/:data", insertData)
+    .delete("/clients/:id", deleteData)
+    .post("/clients/", insertData)
     
 export default router;   
 

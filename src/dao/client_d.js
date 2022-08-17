@@ -1,9 +1,8 @@
 import db from "../data/db.js";
 
 const clientsList = () => {
-    const query = "SELECT * FROM CLIENTS;"
     return new Promise((resolve, reject) => {
-        db.all(query, (error, rows) => {
+        db.all("SELECT * FROM CLIENTS", (error, rows) => {
             if (error) {
                 reject(error)
             } 
@@ -16,17 +15,15 @@ const clientsList = () => {
 
 
 const insertData = (data) => {
-    const query = "INSERT INTO clients (client_id, name, contact, age, city) VALUES (?,?,?,?,?)"
-    [data.CLIENT_ID, data.NAME, data.CONTACT, data.AGE, data.CITY]
     return new Promise((resolve, reject) => {
-        db.run(query, (error, rows) => {
+        db.run(`INSERT INTO CLIENTS (client_id, name, contact, age, city) VALUES (?,?,?,?,?)`, Object.values(data), (error, rows) => {
             if (error) {
                 reject(error)
             } 
             else {
                 resolve({
                     "msg": `Data successfully inserted!`,
-                    "pedido": rows,
+                    "client": rows,
                     "erro": false,
                 });
             }
@@ -35,56 +32,44 @@ const insertData = (data) => {
 }
 
 const clientSelectById = (id) => {
-    const query = `SELECT * FROM CLIENTS WHERE ID = ?;`
     return new Promise((resolve, reject) => {
-    db.get(query, id, (error, rows) => {
-        if(error) {
-            reject(error)
-        } else if ((!rows) || rows.length <= 0) {
-            reject({
-                "message": 'Usuário não encontrado',
-                "status": 404,
-                "erro": true
-            })
-        } else {resolve({
-            "status": 200,
-            "retorno" : {
-            "dados" : rows
-            }
-        })}
-    })
-})
-}
+      db.all(`SELECT * FROM CLIENTS WHERE client_id = ?`, [id],  (erro, rows) => {
+        if (erro) {
+          reject(erro.message);
+        } else {
+          resolve(rows);
+        }
+      });
+    });
+  };
+  
 
-const updateById = (id, data) => {
-    const query = "UPDATE clients SET name = ?, contact = ?, age =?, city = ? WHERE id = ?"
-    [data.name, data.contact, data.age, data.city, id]
+
+const updateById = (data) => {
     return new Promise((resolve, reject) => {
-        db.run(query, (error, rows) => {
+        db.run(`UPDATE CLIENTS
+         SET name = ?, contact = ?, age =?, city = ? WHERE client_id = ?`, [data.name, data.contact, data.age, data.city, data.client_id], (error) => {
             if (error) {
-                reject(error)
+                reject(error.message)
             } 
             else {
-                resolve(rows)
+                resolve("Client updated successfully!", data)
             }
         });
     });
 }
 
-const deleteByCity = (city) => {
-    const query = "DELETE FROM clients WHERE city = ?"
-    city
+const deleteById = (id) => {
     return new Promise((resolve, reject) => {
-        db.run(query, (error) => {
-            if (error) {
-                reject(error)
-            } 
-            else {
-                resolve("Client deleted successfully")
-            }
-        });
+      db.run(`DELETE FROM CLIENTS WHERE client_id = ?`, id, (erro) => {
+        if (erro) {
+          reject(erro.message);
+        } else {
+          resolve("Client removed!");
+        }
+      });
     });
-}
+  };
 
 
-export { clientsList, clientSelectById, insertData, updateById, deleteByCity } ;
+export { clientsList, clientSelectById, insertData, updateById, deleteById } ;

@@ -1,9 +1,9 @@
-import  {getClients, selectData, insertD, updateD, deleteD} from "../models/client_m.js";
+import  {Clients, getClients, selectData, insertD, updateD, deleteD} from "../models/client_m.js";
 
 export const clientsList = async (req, res) => {
     try {
          const Clients = await getClients();
-         res.status(200).json({Clients})
+         res.status(200).json(Clients)
     } catch (error) {
          res.status(400).json({
              "msg" : error.message,
@@ -13,23 +13,33 @@ export const clientsList = async (req, res) => {
  }
 
  export const clientSelectById = async (req, res) => {
-     const id = req.params.id
-     try {
-          const Clients = await selectData(id);
-          res.status(200).json({Clients})
-     } catch (error) {
-          res.status(400).json({
-              "msg" : error.message,
-              "erro" : "true"
-          });
-     }
- }
+ const { name, contact, age, city } = req.body;
+    const { id } = req.params;
+
+    const oldClient = await selectData(id);
+    const dataMolded = new Clients(
+      name || oldClient[0].NAME,
+      contact || oldClient[0].CONTACT,
+      age || oldClient[0].AGE,
+      city || oldClient[0].CITY,
+      id
+    );
+
+    try {
+      const data = await putUserByID(dataMolded);
+      res.status(201).json({ results: data, error: false });
+    } catch (erro) {
+      res.status(400).json({ message: erro.message, error: true });
+    }};
+
 
  export const updateData = async (req, res) => {
      const id = req.params.id
-     try {
-          const Clients = await updateD(id);
-          res.status(200).json({Clients})
+     const { name , contact, age, city} = req.body
+     const dataC = new Clients( name, contact, age, city)
+     try{
+          const upData = await updateD(dataC, id);
+          res.status(200).json(upData)
      } catch (error) {
           res.status(400).json({
               "msg" : error.message,
@@ -39,27 +49,28 @@ export const clientsList = async (req, res) => {
  }
 
  export const deleteData = async (req, res) => {
-     const city = req.params.city
      try {
-          const Clients = await deleteD(city);
-          res.status(200).json({Clients})
+          const del = await deleteD(req.params.id);
+          res.status(200).json({del})
      } catch (error) {
           res.status(400).json({
               "msg" : error.message,
               "erro" : "true"
-          });
+          })
      }
  }
 
- export const insertData = async (req, res) => {
-     const data = req.params.data
+export const insertData = async (req, res) => {
+     const { client_id, name, contact, age, city } = req.body;
+   
      try {
-          const Clients = await insertD(data);
-          res.status(200).json({Clients})
+       const newData = await insertD(req.body);
+       res.status(201).json({ newData });
      } catch (error) {
-          res.status(400).json({
-              "msg" : error.message,
-              "erro" : "true"
-          });
+       res.status(400).json({
+         message: error.message,
+         erro: "true",
+       });
      }
- }
+   };
+

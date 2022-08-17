@@ -5,7 +5,7 @@ import routes from "./routes/main_route.js";
 
 const corsConfig = {
     origin: '*',
-    methods: 'GET,PUT,POST,DELETE',
+    methods: 'GET,PATCH,POST,DELETE',
     preflightContinue: false,
     optionsSuccessStatus: 204,
 }
@@ -20,6 +20,6 @@ routes(app);
 
 export default app;
 
-const port =  process.env.PORT || 4000;
+const port =  process.env.PORT || 5000;
 
 app.listen(port, () => console.log(`Running in http://localhost:${port}`));
