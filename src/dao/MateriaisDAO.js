@@ -17,7 +17,7 @@ const createMaterialD = (data) => {
 };
 // Material // MATERIAL
 const findAllMaterialsD = () => {
-  const query = "SELECT * FROM MATERIAL;";
+  const query = `SELECT * FROM MATERIAL`;
   return new Promise((resolve, reject) => {
     db.all(query, (error, rows) => {
       if (error) {
@@ -31,7 +31,7 @@ const findAllMaterialsD = () => {
 
 const findMaterialD = (id) => {
   return new promise((resolve, reject) => {
-    db.get(`SELECT * FROM MATERIAL WHERE id = ?`, id, (err, row) => {
+    db.all(`SELECT * FROM MATERIAL WHERE id = ?`, id, (err, row) => {
       if (err) {
         reject(err);
       } else {

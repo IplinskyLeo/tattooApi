@@ -1,15 +1,15 @@
 import {
-  getMaterialD,
-  selectMaterialD,
-  insertMaterialD,
-  updateMaterialD,
-  deleteMaterialD,
+  getMaterial,
+  selectMaterials,
+  insertMaterial,
+  updateMaterials,
+  deleteMaterials,
 } from "../models/Materiais.js";
 
 export const createMaterial = async (req, res) => {
   const data = req.params.data;
   try {
-    const Material = await insertMaterialD(data);
+    const Material = await insertMaterial(data);
     res.status(201).json({ Material });
   } catch (error) {
     res.status(400).json({
@@ -21,9 +21,9 @@ export const createMaterial = async (req, res) => {
 
 export const findAllMaterials = async (req, res) => {
   try {
-    const Materials = await getMaterialD();
+    const Materials = await selectMaterials();
     res.status(200).json({ Materials });
-  } catch (err) {
+  } catch (error) {
     res.status(500).json({
       msg: error.msg,
       error: "true",
@@ -34,7 +34,7 @@ export const findAllMaterials = async (req, res) => {
 export const findMaterial = async (req, res) => {
   const id = req.params.id;
   try {
-    const Materials = await selectMaterialD(id);
+    const Materials = await getMaterial(id);
     res.status(200).json({ Materials });
   } catch (error) {
     res.status(400).json({
@@ -44,10 +44,10 @@ export const findMaterial = async (req, res) => {
   }
 };
 
-export const updateMaterial = async (req, res) => {
+export const updateMaterialC = async (req, res) => {
   const id = req.params.id;
   try {
-    const Materials = await updateMaterialD(id);
+    const Materials = await updateMaterials(id);
     res.status(200).json({ Materials });
   } catch (error) {
     res.status(400).json({
@@ -57,10 +57,10 @@ export const updateMaterial = async (req, res) => {
   }
 };
 
-export const deleteMaterial = async (req, res) => {
+export const deleteMaterialC = async (req, res) => {
   const id = req.params.id;
   try {
-    const Materials = await deleteMaterialD(id);
+    const Materials = await deleteMaterials(id);
     res.status(200).json({ Materials });
   } catch (error) {
     res.status(400).json({

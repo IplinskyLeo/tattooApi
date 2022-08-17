@@ -1,18 +1,18 @@
 import { Router } from "express";
 import {
-  createFornecedor,
-  findAllFornecedores,
-  findFornecedor,
-  updateFornecedor,
-  deleteFornecedor,
+  createMaterial,
+  findAllMaterials,
+  findMaterial,
+  updateMaterialC,
+  deleteMaterialC,
 } from "../controllers/MateriaisController.js";
 
 const router = Router();
 
-router.get("/Material", findAllFornecedores);
-router.get("/Material/:id", findFornecedor);
-router.post("/Material", createFornecedor);
-router.put("/Material/:id", updateFornecedor);
-router.delete("/Material/:id", deleteFornecedor);
+router.get("/Material", createMaterial);
+router.get("/Material/:id", findAllMaterials);
+router.post("/Material", findMaterial);
+router.put("/Material/:id", updateMaterialC);
+router.delete("/Material/:id", deleteMaterialC);
 
 export default router;
