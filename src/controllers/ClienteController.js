@@ -1,4 +1,4 @@
-import  {Clients, getClients, selectData, insertD, updateD, deleteD} from "../models/Cliente.js";
+import  {Clients, getClients, selectData, insertD, updateD, deleteD} from "../models/ClienteModel.js";
 
 export const clientsList = async (req, res) => {
     try {
