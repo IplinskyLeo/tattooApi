@@ -12,7 +12,7 @@ export const createMaterial = async (req, res) => {
   const data = req.params.data;
   try {
     const Material = await insertMaterial(data);
-    res.status(201).json({ Material });
+    res.status(200).json({ Material });
   } catch (error) {
     res.status(400).json({
       message: error.message,
@@ -22,15 +22,15 @@ export const createMaterial = async (req, res) => {
 };
 
 export const findAllMaterials = async (req, res) => {
-  try {
+  // try {
     const Materials = await selectMaterials();
-    res.status(200).json({ Materials });
-  } catch (error) {
-    res.status(500).json({
-      msg: error.msg,
-      error: "true",
-    });
-  }
+    res.status(200).json(Materials);
+  // } catch (error) {
+  //   res.status(500).json({
+  //     msg: error.msg,
+  //     error: "true",
+  //   });
+  // }
 };
 
 export const findMaterial = async (req, res) => {

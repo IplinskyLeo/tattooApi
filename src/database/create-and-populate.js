@@ -1,5 +1,5 @@
 import sqlite3 from "sqlite3";
-const db = new sqlite3.Database("./database.db");
+const db = new sqlite3.Database("./src/database/database.db");
 
 const createTable = () => {
   db.run(
@@ -23,40 +23,20 @@ const createTable = () => {
 const populateTable = () => {
   db.run(
     `INSERT INTO MATERIAL (id, fornecedor, produto, quantidade, valor) VALUES
-    (1, 'Trixxy', 'caneta rotativa T3100','5',350);`
+    (1, 'Trixxy', 'caneta rotativa T3100','5',350),
+    (2, 'Master Agulhas', 'agulha de cobre','10',10),
+    (3, 'Pro Cleanings', 'kit higienizador premium','150',30),
+    (4, 'MaxWell', 'kit tintas variadas', '50',37)
+    `,
+    (err) => {
+      if (err) {
+        console.log(err + "Error to populate table");
+      } else {
+        console.log("sucessfully populated table");
+      }
+    }
   );
 };
-//       ,
-//   `INSERT INTO MATERIAL (id, fornecedor, produto, quantidade, valor) VALUES (
-//        2,
-//       'Master Agulhas',
-//       'agulha',
-//       '50',
-//        20
-//       )`,
-//   `INSERT INTO MATERIAL (id, fornecedor, produto, quantidade, valor) VALUES (
-//        3,
-//       'Pro Clean',
-//       'kit higienizador',
-//       '10',
-//        30
-//       )`,
-//   `INSERT INTO MATERIAL (id, fornecedor, produto, quantidade, valor) VALUES (
-//        4,
-//       'Max Tintas',
-//       'tintas variadas',
-//       '100',
-//        14
-//       )`,
-//   (err) => {
-//     if (err) {
-//       console.log(err + "Error to populate table");
-//     } else {
-//       console.log("sucessfully populated table");
-//     }
-//   }
-// );
-// };
 
 db.serialize(() => {
   createTable();
