@@ -7,9 +7,9 @@ const createMaterialD = (data) => {
       [data.id, data.fornecedor, data.produto, data.quantidade, data.valor],
       (error) => {
         if (error) {
-          reject(error);
+          reject(error.message);
         } else {
-          resolve();
+          resolve(data);
         }
       }
     );
@@ -49,11 +49,7 @@ const updateMaterialD = (data, id) => {
             quantidade = ?,
             valor = ?
             WHERE id = ?`,
-      data.fornecedor,
-      data.produto,
-      data.quantidade,
-      data.valor,
-      id,
+      [data.fornecedor, data.produto, data.quantidade, data.valor, id],
       (error, rows) => {
         if (error) {
           reject(error);
