@@ -37,13 +37,13 @@ export const selectMaterials = async () => {
   }
 };
 
-export const getMaterial = async () => {
+export const getMaterial = async (id) => {
   try {
-    const data = await findMaterialD();
+    const data = await findMaterialD(id);
     if (!data) throw new Error("Não foi possível encontrar o Material!");
     return data;
-  } catch (err) {
-    throw err;
+  } catch (error) {
+    throw error;
   }
 };
 

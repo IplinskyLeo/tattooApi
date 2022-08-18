@@ -1,10 +1,10 @@
 import db from "../database/config.js";
 
 const createMaterialD = (data) => {
-  return new promise((resolve, reject) => {
+  return new Promise((resolve, reject) => {
     db.run(
-      `INSERT INTO MATERIAL (fornecedor, produto, quantidade, valor) VALUES (?,?,?,?)`,
-      [data.fornecedor, data.produto, data.quantidade, data.valor],
+      `INSERT INTO MATERIAL (id, fornecedor, produto, quantidade, valor) VALUES (?,?,?,?,?)`,
+      [data.id, data.fornecedor, data.produto, data.quantidade, data.valor],
       (error) => {
         if (error) {
           reject(error);
@@ -15,19 +15,7 @@ const createMaterialD = (data) => {
     );
   });
 };
-// Material // MATERIAL
-// const findAllMaterialsD = () => {
-//   const query = `SELECT * FROM MATERIAL`;
-//   return new Promise((resolve, reject) => {
-//     db.all(query, (error, rows) => {
-//       if (error) {
-//         reject(error);
-//       } else {
-//         resolve(rows);
-//       }
-//     });
-//   });
-// };
+
 const findAllMaterialsD = () => {
   return new Promise((resolve, reject) => {
     db.all("SELECT * FROM MATERIAL", (erro, rows) => {
@@ -42,7 +30,7 @@ const findAllMaterialsD = () => {
 
 const findMaterialD = (id) => {
   return new Promise((resolve, reject) => {
-    db.all("SELECT * FROM MATERIAL WHERE id = ?", [id], (erro, rows) => {
+    db.all("SELECT * FROM MATERIAL WHERE id = ?", id, (erro, rows) => {
       if (erro) {
         reject(erro.message);
       } else {
@@ -61,10 +49,14 @@ const updateMaterialD = (data, id) => {
             quantidade = ?,
             valor = ?
             WHERE id = ?`,
-      [data.fornecedor, data.produto, data.quantidade, data.valor, id],
-      (err) => {
-        if (err) {
-          reject(err);
+      data.fornecedor,
+      data.produto,
+      data.quantidade,
+      data.valor,
+      id,
+      (error, rows) => {
+        if (error) {
+          reject(error);
         } else {
           resolve(rows);
         }
@@ -74,7 +66,7 @@ const updateMaterialD = (data, id) => {
 };
 
 const deleteMaterialD = (id) => {
-  return new promise((resolve, reject) => {
+  return new Promise((resolve, reject) => {
     db.run(`DELETE FROM MATERIAL WHERE id = ?`, id, (err) => {
       if (err) {
         reject(err);
