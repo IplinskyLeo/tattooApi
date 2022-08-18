@@ -1,5 +1,5 @@
 import sqlite3 from 'sqlite3';
-const db = new sqlite3.Database('./database.db');
+const db = new sqlite3.Database('./databaseClient.db');
 
 const CLIENTS_SCHEMA = `
 CREATE TABLE IF NOT EXISTS "CLIENTS" (
