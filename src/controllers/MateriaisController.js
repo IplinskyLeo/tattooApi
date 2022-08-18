@@ -1,5 +1,3 @@
-import Fornecedores from '../models/Materiais.js';
-
 import {
   getMaterial,
   selectMaterials,
@@ -22,15 +20,15 @@ export const createMaterial = async (req, res) => {
 };
 
 export const findAllMaterials = async (req, res) => {
-  // try {
+  try {
     const Materials = await selectMaterials();
     res.status(200).json(Materials);
-  // } catch (error) {
-  //   res.status(500).json({
-  //     msg: error.msg,
-  //     error: "true",
-  //   });
-  // }
+  } catch (error) {
+    res.status(400).json({
+      msg: error.msg,
+      error: "Can't find Materials",
+    });
+  }
 };
 
 export const findMaterial = async (req, res) => {
@@ -40,8 +38,7 @@ export const findMaterial = async (req, res) => {
     res.status(200).json({ Materials });
   } catch (error) {
     res.status(400).json({
-      msg: error.msg,
-      error: "true",
+      error: "Can't find selected Material",
     });
   }
 };

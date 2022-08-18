@@ -41,19 +41,19 @@ const findAllMaterialsD = () => {
 };
 
 const findMaterialD = (id) => {
-  return new promise((resolve, reject) => {
-    db.all(`SELECT * FROM MATERIAL WHERE id = ?`, id, (err, row) => {
-      if (err) {
-        reject(err);
+  return new Promise((resolve, reject) => {
+    db.all("SELECT * FROM MATERIAL WHERE id = ?", [id], (erro, rows) => {
+      if (erro) {
+        reject(erro.message);
       } else {
-        resolve(row);
+        resolve(rows);
       }
     });
   });
 };
 
-const updateMaterialD = (id, data) => {
-  return new promise((resolve, reject) => {
+const updateMaterialD = (data, id) => {
+  return new Promise((resolve, reject) => {
     db.run(
       `UPDATE MATERIAL SET
             fornecedor = ?,
