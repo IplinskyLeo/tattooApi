@@ -1,4 +1,5 @@
 import express from "express";
+import { agendamentoRouter } from "./routes/agendamento.js";
 import cors from "cors";
 import clients from "./routes/cliente.js";
 
@@ -11,6 +12,7 @@ const corsConfig = {
 }
 
 const app = express();
+app.use(agendamentoRouter);
 
 app.use(express.json(),
 cors(corsConfig)
