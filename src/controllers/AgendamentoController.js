@@ -11,7 +11,7 @@ import {
 } from "../DAO/AgendamentoDAO.js";
 
 const createAgendamento = async (req, res) => {
-  const { descricao, data, horario, tatuadorId, clienteId, preco } = req.body;
+  const { descricao, data, horario, tatuadorId, clientId, preco } = req.body;
   // const { id } = req.params;
 
   try {
