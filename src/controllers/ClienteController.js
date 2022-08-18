@@ -41,6 +41,7 @@ export const updateData = async (req, res) => {
   }
 }
 
+
  export const deleteData = async (req, res) => {
      try {
           const del = await deleteD(req.params.id);
