@@ -60,7 +60,7 @@ src/
 
 ```bash
 # Clone o repositório
-$ git clone <https://github.com/cardosovanessa/tattoo-studio>
+$ git clone <https://github.com/IplinskyLeo/tattooApi.git>
 
 # Acesse a pasta do projeto no terminal/cmd
 $ cd tattooApi
