@@ -26,21 +26,19 @@ export const clientSelectById = async (req, res) => {
 };
 
 export const updateData = async (req, res) => {
-  const id = req.params.id
-  const {name, contact, age, city} = req.body
-  const newClient = new Clients(name, contact, age, city) 
+  const {NAME, CONTACT, AGE, CITY} = req.body;
+  const client_id = req.params.id; 
   try {
-      const updated = await updateD(newClient, id)
-      res.status(200).send(updated)
-  }
-  catch(error) {
-      res.status(400).json({
-          "msg" : error.message,
-          "erro" : "true"
-      })
+    const newClient = new Clients(  NAME, CONTACT, AGE, CITY) 
+    const updated = await updateD(newClient, client_id)
+    res.status(200).json(updated)
+  } catch (error) {
+    res.status(404).json({
+      "mensagem": error.message,
+      "erro": true
+    })
   }
 }
-
 
  export const deleteData = async (req, res) => {
      try {

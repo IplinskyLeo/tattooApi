@@ -1,4 +1,4 @@
-import db from "../database/config.js";
+import db from "../database/dbconfig.js";
 
 const clientsList = () => {
     return new Promise((resolve, reject) => {
@@ -43,22 +43,18 @@ const clientSelectById = (id) => {
     });
   };
   
-
-
-const updateById = (id, newClient) => {
-    return new Promise((resolve, reject) => {
-        db.run(`UPDATE CLIENTS SET name = ?, contact = ?, age =?, city = ? WHERE client_id = ?`, [newClient.name, newClient.contact, newClient.age, newClient.city, id],
-         (error) => {
-            if (error) {
-                reject(error.message)
-            } 
-            else {
-              resolve("Client updated", newClient)
-               
+const updateById = (newClient, client_id) => {
+    return new Promise( (resolve, reject) => {
+        db.run( `UPDATE CLIENTS SET name = ?, contact = ?, age = ?, city = ? WHERE client_id = ${client_id}`, Object.values(newClient), (error) => {
+                if(error) {
+                    reject(error)
+                } else {
+                    resolve(`Client updated`)
+                }
             }
-        })
-      })
-    };
+        )
+    })  
+}
 
 const deleteById = (id) => {
     return new Promise((resolve, reject) => {
