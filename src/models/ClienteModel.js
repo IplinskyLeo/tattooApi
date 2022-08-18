@@ -2,7 +2,7 @@ import {clientsList, clientSelectById, insertData, updateById, deleteById} from 
 
 export class Clients {
     constructor(client_id, name, contact, age, city){
-        this.id = client_id;
+        this.client_id = client_id;
         this.name = name;
         this.contact = contact;
         this.age = age;
@@ -40,9 +40,10 @@ export const insertD = async (data) => {
     }
 }
 
-export const updateD = async (newClient, id) => {
+export const updateD = async (newClient, client_id) => {
     try {
-        const data = await updateById(newClient, id);
+        const data = await updateById (newClient, client_id)
+        if(!data) throw new Error("Não foi possível atualizar!")
         return data
     } catch (error) {
         throw error
