@@ -25,20 +25,21 @@ export const clientSelectById = async (req, res) => {
   }
 };
 
- export const updateData = async (req, res) => {
-     const id = req.params.id
-     const { name , contact, age, city} = req.body
-     const dataC = new Clients( name, contact, age, city)
-     try{
-          const upData = await updateD(dataC, id);
-          res.status(200).json(upData)
-     } catch (error) {
-          res.status(400).json({
-              "msg" : error.message,
-              "erro" : "true"
-          });
-     }
- }
+export const updateData = async (req, res) => {
+  const id = req.params.id
+  const {name, contact, age, city} = req.body
+  const newClient = new Clients(name, contact, age, city) 
+  try {
+      const updated = await updateD(newClient, id)
+      res.status(200).send(updated)
+  }
+  catch(error) {
+      res.status(400).json({
+          "msg" : error.message,
+          "erro" : "true"
+      })
+  }
+}
 
  export const deleteData = async (req, res) => {
      try {

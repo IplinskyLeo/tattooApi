@@ -5,7 +5,7 @@ import clients from "./routes/cliente.js";
 
 const corsConfig = {
     origin: '*',
-    methods: 'GET,PATCH,POST,DELETE',
+    methods: 'GET,PUT,POST,DELETE',
     preflightContinue: false,
     optionsSuccessStatus: 204,
 }

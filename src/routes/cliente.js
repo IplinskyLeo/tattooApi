@@ -7,7 +7,7 @@ const router = express.Router();
 router
     .get("/clients", clientsList)
     .get("/clients/:id", clientSelectById)
-    .patch("/clients/:id", updateData)
+    .put("/clients/:id", updateData)
     .delete("/clients/:id", deleteData)
     .post("/clients/", insertData)
     

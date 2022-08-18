@@ -40,10 +40,9 @@ export const insertD = async (data) => {
     }
 }
 
-export const updateD = async (id) => {
+export const updateD = async (newClient, id) => {
     try {
-        const data = await updateById(id);
-        if (!data) throw new Error("Não foi possível fazer a atualização dos seus dados!")
+        const data = await updateById(newClient, id);
         return data
     } catch (error) {
         throw error
