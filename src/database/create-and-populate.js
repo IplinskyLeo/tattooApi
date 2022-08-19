@@ -40,12 +40,7 @@ const populateTable = () => {
   );
 };
 
-db.serialize(() => {
-  createTable();
-  populateTable();
-});
-
-// AGENDAMENTO 
+// AGENDAMENTO
 
 const AGENDAMENTO_SCHEMA = `
 CREATE TABLE IF NOT EXISTS "AGENDAMENTO" (
@@ -78,11 +73,6 @@ function populateTableAgendamento() {
   });
 }
 
-db.serialize(() => {
-  createTableAgendamento();
-  populateTableAgendamento();
-});
-
 // CLIENTES
 
 const CLIENTS_SCHEMA = `
@@ -102,23 +92,25 @@ VALUES
     (3, 'Marcela Goes Lima', '(21) 99723-8701', '40', 'Rio de Janeiro'),
     (4, 'Felipe Oliveira Júnior', '(11) 97653-8221', '33', 'São Paulo'),
     (5, 'João Ribeiro Lima', '(61) 9876-1281', '21', 'Brasília');
-`
+`;
 
-function createTable() {
-    db.run(CLIENTS_SCHEMA, (error) => {
-        if (error) console.log("Error to create clients table.");
-    });
+function createTableC() {
+  db.run(CLIENTS_SCHEMA, (error) => {
+    if (error) console.log("Error to create clients table.");
+  });
 }
 
-function populateTable() {
-    db.run(ADD_CLIENTS_DATA, (error)=> {
-       if (error) console.log("Error to populate clients table");
-    });
+function populateTableC() {
+  db.run(ADD_CLIENTS_DATA, (error) => {
+    if (error) console.log("Error to populate clients table");
+  });
 }
 
-db.serialize( () => {
-    createTable();
-    populateTable();
-}
-
-)
+db.serialize(() => {
+  createTableAgendamento();
+  populateTableAgendamento();
+  createTable();
+  populateTable();
+  createTableC();
+  populateTableC();
+});
