@@ -1,4 +1,9 @@
 import express from "express";
+import router from "./routes/materiais.js";
+
+app.use(express.json());
+app.use(router);
+
 import { agendamentoRouter } from "./routes/agendamento.js";
 import cors from "cors";
 import clients from "./routes/cliente.js";
@@ -33,3 +38,4 @@ routes(app);
 const port =  process.env.PORT || 5000;
 
 app.listen(port, () => console.log(`Running in http://localhost:${port}`));
+
