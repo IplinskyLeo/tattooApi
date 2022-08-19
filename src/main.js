@@ -12,9 +12,9 @@ const corsConfig = {
 };
 
 const app = express();
+app.use(express.json(), cors(corsConfig));
 app.use(agendamentoRouter);
 app.use(router);
-app.use(express.json(), cors(corsConfig));
 
 const routes = (app) => {
   app.route("/").get((req, res) => {

@@ -9,7 +9,7 @@ import {
 import MateriaisClass from "../models/Materiais.js";
 
 export const createMaterial = async (req, res) => {
-  const { id, fornecedor, produto, quantidade, valor } = req.body;
+  const { fornecedor, produto, quantidade, valor } = req.body;
   try {
     const Material = await createMaterialD(req.body);
     res.status(200).json({ Material });
@@ -56,7 +56,6 @@ export const updateMaterialC = async (req, res) => {
       quantidade,
       valor
     );
-    const Material = await updateMaterialD(MaterialNew);
     const updated = await updateMaterialD(MaterialNew, id);
     res.status(200).json(updated);
     console.log(updated);
