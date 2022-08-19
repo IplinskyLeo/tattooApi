@@ -14,7 +14,7 @@ import {
   deleteMaterialD,
 } from "../dao/MateriaisDAO.js";
 
-import Fornecedores from "../models/Materiais.js";
+import MateriaisClass from "../models/Materiais.js";
 
 export const createMaterial = async (req, res) => {
   const { id, fornecedor, produto, quantidade, valor } = req.body;
@@ -54,21 +54,23 @@ export const findMaterial = async (req, res) => {
 };
 
 export const updateMaterialC = async (req, res) => {
-  const { id } = req.params.id;
+  const id = req.params.id;
   const { fornecedor, produto, quantidade, valor } = req.body;
   try {
-    const MaterialOld = await updateMaterialD(id);
-    const MaterialNew = new Fornecedores(
-      id,
-      fornecedor,
-      produto,
-      quantidade,
-      valor
+    const MaterialOld = await findMaterialD(id);
+    const MaterialNew = new MateriaisClass(
+      id || MaterialOld.id,
+      fornecedor || MaterialOld[0].fornecedor,
+      produto || MaterialOld[0].produto,
+      quantidade || MaterialOld[0].quantidade,
+      valor || MaterialOld[0].valor
     );
 
-      const Material = await updateMaterialD(MaterialNew);
+    const Material = await updateMaterialD(MaterialNew);
 
     res.status(200).json(Material);
+    console.log(Material);
+    console.log(req.params.id);
   } catch (error) {
     res.status(400).json({
       error: "Can't update selected Material id",

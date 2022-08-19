@@ -6,7 +6,7 @@
 //   deleteMaterialD,
 // } from "../dao/MateriaisDAO.js";
 
-class Fornecedores {
+class MateriaisClass {
   constructor(id, fornecedor, produto, quantidade, valor) {
     this.id = id;
     this.fornecedor = fornecedor;
@@ -16,7 +16,7 @@ class Fornecedores {
   }
 }
 
-export default Fornecedores;
+export default MateriaisClass;
 
 // export const insertMaterial = async (data) => {
 //   try {
