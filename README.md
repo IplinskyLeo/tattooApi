@@ -91,11 +91,11 @@ $ <http://localhost:4000>
 
 | Método | Rota | Descrição |
 | ------ | ----- | ----------- |
-|  **`GET`** | **/clientes** | Retorna todos os clientes. |
-|  **`GET`** | **/cliente/id** | Retorna um cliente. |
-|  **`POST`** | **/cliente** | Cria um novo cliente.  |
-|  **`PUT`** | **/cliente/id** | Altera os dados do cliente.
-|  **`DELETE`** | **/cliente/id** | Remove o cliente.
+|  **`GET`** | **/clients** | Retorna todos os clientes. |
+|  **`GET`** | **/clients/id** | Retorna um cliente. |
+|  **`POST`** | **/clients** | Cria um novo cliente.  |
+|  **`PUT`** | **/clients/id** | Altera os dados do cliente.
+|  **`DELETE`** | **/clients/id** | Remove o cliente.
   
 
 ### [ 2 ] <em>Materiais</em>
