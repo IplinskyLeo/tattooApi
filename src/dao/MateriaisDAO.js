@@ -55,8 +55,6 @@ const updateMaterialD = (data, id) => {
           reject(error);
         } else {
           resolve(data);
-          // console.log(rows);
-          // console.log(data);
         }
       }
     );

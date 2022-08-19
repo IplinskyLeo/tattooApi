@@ -1,11 +1,3 @@
-// import {
-//   getMaterial,
-//   selectMaterials,
-//   insertMaterial,
-//   updateMaterials,
-//   deleteMaterials,
-// } from "../models/Materiais.js";
-
 import {
   createMaterialD,
   findAllMaterialsD,
@@ -75,30 +67,6 @@ export const updateMaterialC = async (req, res) => {
     });
   }
 };
-
-// export const updateMaterialC = async (req, res) => {
-//   const id = req.params.id;
-//   const { fornecedor, produto, quantidade, valor } = req.body;
-//   try {
-//     const MaterialOld = await findMaterialD(id);
-//     const MaterialNew = new MateriaisClass(
-//       id || MaterialOld.id,
-//       fornecedor || MaterialOld[0].fornecedor,
-//       produto || MaterialOld[0].produto,
-//       quantidade || MaterialOld[0].quantidade,
-//       valor || MaterialOld[0].valor
-//     );
-//     const Material = await updateMaterialD(MaterialNew);
-//     res.status(200).json(Material);
-//     console.log(Material);
-//   } catch (error) {
-//     res.status(400).json({
-//       msg: error.msg,
-//       error: "Can't update selected Material id",
-//     });
-//     console.log("catch");
-//   }
-// };
 
 export const deleteMaterialC = async (req, res) => {
   const id = req.params.id;
