@@ -2,6 +2,9 @@
 ### 📑 Descrição
 Desenvolvimento da <em>**API REST**</em> no **padrão MVC** que retorna informações das entidades de um estúdio de tatuagem e efetua todas as operações **CRUD**: ``tatuador``, ``cliente``, ``agendamento``, ``materiais``.
 
+
+**[Slides da Apresentação](https://drive.google.com/file/d/1iC972UneVB5enoFDt_vQodc0EbTuHmOw/view)**
+
 **[ Tecnologias ]**
 
 <samp>
