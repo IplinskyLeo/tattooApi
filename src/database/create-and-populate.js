@@ -73,6 +73,47 @@ function populateTableAgendamento() {
   });
 }
 
+db.serialize(() => {
+  createTableAgendamento();
+  populateTableAgendamento();
+});
+
+// TATUADORES
+
+const TATUADOR_SCHEMA = `
+CREATE TABLE IF NOT EXISTS "TATUADOR" (
+    "TATUADOR_ID" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "NAME" varchar(64),
+    "CONTACT" varchar(100),
+    "AVAILABILITY" varchar(64)
+);`;
+
+const ADD_TATUADORES = `
+INSERT INTO TATUADOR (tatuador_id, name, contact, availability)
+VALUES 
+    (1, 'Felipe Moraes', '(16) 99600-7093', 'Manha'),
+    (2, 'Lidia Souza', '(21) 94715-4578', 'Tarde'),
+    (3, 'Zoe Smith', '(21) 99632-9278', 'Noite');
+`
+
+function createTable() {
+    db.run(TATUADOR_SCHEMA, (error) => {
+        if (error) console.log("Error to create tatuador table.");
+    });
+}
+
+function populateTable() {
+    db.run(ADD_TATUADORES, (error)=> {
+       if (error) console.log("Error to populate clients table");
+    });
+}
+
+db.serialize( () => {
+    createTable();
+    populateTable();
+}
+
+)
 // CLIENTES
 
 const CLIENTS_SCHEMA = `
