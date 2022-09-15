@@ -1,4 +1,4 @@
-import db from "../database/Tatuador.js";
+import db from "../database/dbconfig.js";
 
 const TatuadorList = () => {
     return new Promise((resolve, reject) => {
@@ -45,7 +45,7 @@ const tatuadorSelectById = (id) => {
   
 const updateById = (newTatuador, tatuador_id) => {
     return new Promise( (resolve, reject) => {
-        db.run( `UPDATE CLIENTS SET name = ?, contact = ?, availability = ? WHERE tatuador_id = ${tatuador_id}`, Object.values(newTatuador), (error) => {
+        db.run( `UPDATE TATUADOR SET name = ?, contact = ?, availability = ? WHERE tatuador_id = ${tatuador_id}`, Object.values(newTatuador), (error) => {
                 if(error) {
                     reject(error)
                 } else {

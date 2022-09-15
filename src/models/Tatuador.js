@@ -1,4 +1,4 @@
-import {tatuadorList, tatuadorSelectById, insertData, updateById, deleteById} from "../DAO/TatuadorDAO.js"
+import {TatuadorList, tatuadorSelectById, insertData, updateById, deleteById} from "../DAO/TatuadorDAO.js"
 
 export class Tatuador {
     constructor(tatuador_id, name, contact, availability){
@@ -11,7 +11,7 @@ export class Tatuador {
 
 export const getTatuador = async () => {
     try {
-        const data = await tatuadorList();
+        const data = await TatuadorList();
         if (!data) throw new Error("Não foi possível encontrar os tatuadores!")
         return data
     } catch (error) {

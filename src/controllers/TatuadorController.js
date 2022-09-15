@@ -1,4 +1,4 @@
-import  {Tatuador, getTatuador, selectData, insertD, updateD, deleteD} from "../models/create-and-populate.js";
+import  {Tatuador, getTatuador, selectData, insertD, updateD, deleteD} from "../models/Tatuador.js";
 
 export const tatuadorList = async (req, res) => {
     try {
